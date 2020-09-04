@@ -3,8 +3,11 @@ const key = require("./key");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-exports.post = async (req, res) => {
+exports.post = async(req, res) => {
     try {
+        console.log("teste");
+        console.log(new User(req.body));
+
         const user = new User(req.body);
 
         await bcrypt.hash(user.password, 10).then((hashedPassword) => {
@@ -18,7 +21,7 @@ exports.post = async (req, res) => {
 
 };
 
-exports.get = async (req, res) => {
+exports.get = async(req, res) => {
     let tamanho = 20;
     let page = 1;
     if (req.params.tamanho != null) {
@@ -30,7 +33,7 @@ exports.get = async (req, res) => {
 
     try {
         const userFind = await User.find({})
-        .limit(parseInt(tamanho)).skip(parseInt(page) - 1);
+            .limit(parseInt(tamanho)).skip(parseInt(page) - 1);
         res.status(200).json(userFind);
     } catch (err) {
         res.status(500).json({ messageErro: err.message, errorObject: err });
@@ -38,9 +41,9 @@ exports.get = async (req, res) => {
 };
 
 
-exports.postAuth = async (req, res) => {
+exports.postAuth = async(req, res) => {
     User.findOne({ cpf: req.body.cpf }).then((user) => {
-        bcrypt.compare(req.body.password, user.password, function (err, isMatch) {
+        bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
             if (isMatch) {
                 var token = jwt.sign({ userId: user.id }, key.tokenKey);
                 res.status(200).json({
@@ -48,8 +51,7 @@ exports.postAuth = async (req, res) => {
                     nome: user.nome,
                     token
                 })
-            }
-            else {
+            } else {
                 res.status(422).json({ message: 'Invalid Password/Username' });
             }
         });
@@ -58,3 +60,11 @@ exports.postAuth = async (req, res) => {
     })
 };
 
+
+
+exports.getTest = async(req, res) => {
+    res.status(200).json({
+        "teste": "OK"
+    })
+
+};

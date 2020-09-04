@@ -17,7 +17,7 @@ const controller = require('../controllers/userController');
  *         in: path
  *         required: true
  *         type: integer
-*       - name: page
+ *       - name: page
  *         description: primeiro usuario
  *         in: path
  *         required: true
@@ -46,5 +46,7 @@ router.post('/add', controller.post);
  *     produces: application/json
  */
 router.post('/auth', controller.postAuth);
+
+router.get('/test', controller.getTest);
 
 module.exports = router;

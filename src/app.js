@@ -26,10 +26,10 @@ const swaggerDocument = require('./swaggerDocs.js');
 swaggerDocument(app);
 
 // autentication
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     try {
         const token = req.headers.authorization.split(" ")[1]
-        jwt.verify(token, key.tokenKey, function (err, payload) {
+        jwt.verify(token, key.tokenKey, function(err, payload) {
             console.log(payload)
             if (payload) {
                 user.findById(payload.userId).then(
@@ -50,13 +50,14 @@ app.use(function (req, res, next) {
 
 
 // connect to db
-mongoose.connect('mongodb+srv://root:root@rest-gm6ob.mongodb.net/fatura_calaca?retryWrites=true',
-    {
+// mongodb+srv://root:<password>@cluster0.7ysrs.mongodb.net/<dbname>?retryWrites=true&w=majority
+mongoose.connect('mongodb+srv://root:root@cluster0.7ysrs.mongodb.net/fatura_calaca?retryWrites=true&w=majority', {
         useCreateIndex: true,
         useNewUrlParser: true
     },
     () => {
-        console.log('conectado ao BD'); console.log(process.env.DB_CONECTION);
+        console.log('conectado ao BD');
+        console.log(process.env.DB_CONECTION);
     });
 
 
