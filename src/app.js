@@ -50,8 +50,8 @@ app.use(function(req, res, next) {
 
 
 // connect to db
-// mongodb+srv://root:<password>@cluster0.7ysrs.mongodb.net/<dbname>?retryWrites=true&w=majority
-mongoose.connect('mongodb+srv://root:root@cluster0.7ysrs.mongodb.net/fatura_calaca?retryWrites=true&w=majority', {
+// mongodb+srv://<USER>:<password>@cluster0.7ysrs.mongodb.net/<dbname>?retryWrites=true&w=majority
+mongoose.connect('{mongodb+srv://<USER>:<password>@cluster0.7ysrs.mongodb.net/<dbname>?retryWrites=true&w=majority}', {
         useCreateIndex: true,
         useNewUrlParser: true
     },
