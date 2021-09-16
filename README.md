@@ -22,3 +22,18 @@ esse projeto foi feito para armazenar uma
 4. [API DOC](http://localhost:3000/api-docs)
 
 
+
+5. crie um usuario para teste
+
+```sh
+curl --location --request POST 'http://localhost:3000/user/add' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "nome" : "matheus calaça",
+    "cpf": "12345678909",
+    "password": "123"
+}
+'
+```
+
+Aplicação de [front](https://github.com/matheusCalaca/fatura_front)
