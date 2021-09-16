@@ -6,8 +6,6 @@ const bcrypt = require('bcryptjs');
 exports.post = async(req, res) => {
     try {
         console.log("teste");
-        console.log(new User(req.body));
-
         const user = new User(req.body);
 
         await bcrypt.hash(user.password, 10).then((hashedPassword) => {
